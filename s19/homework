@@ -1,0 +1,39 @@
+import random
+
+def save_int_file(filename , n , a , b ):
+    f = open(filename,"w")
+    for _ in range(n):
+        num = random.randint(a,b)
+        f.write(str(num)+"\n")
+        f.close()
+
+#save_int_file("numbers.txt",50,1,20)
+
+
+
+
+
+def get_index(arr , value ): 
+    for i in range(len(arr)):
+        if arr[i] == value :
+          return i
+
+def count_nums_file(filename):
+    f = open(filename,'r')
+    lines = f.readlines()
+
+    uniquenumbers=[]
+    countnums = []
+    for li in lines :
+        li  = int(li.strip())
+        if li in uniquenumbers :
+            index = get_index(uniquenumbers,li)
+            countnums[index] += 1
+        else :
+             uniquenumbers.append(li)
+             countnums.append(1)
+
+    for i in range(len(uniquenumbers)):
+            print(f"{uniquenumbers[i]},{countnums[i]}")
+
+count_nums_file("numbers.txt")
